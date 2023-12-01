@@ -80,8 +80,9 @@ function init() {
     // TODO: Importation des textures
 
     // Création du matériau shader
-    const vertexShaderSource = loadFile("./tp3.vert");
-    const fragmentShaderSource = loadFile("./tp3.frag");
+    let fileLoader = new THREE.FileLoader();
+    const vertexShaderSource = fileLoader.load("./tp3.vert");
+    const fragmentShaderSource = fileLoader.load("./tp3.frag");
     let material = createMaterial(vertexShaderSource, fragmentShaderSource);
 
     // TODO: Importation du modèle 3D
