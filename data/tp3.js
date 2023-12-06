@@ -22,7 +22,7 @@ function createScene() {
     camera_light = new THREE.DirectionalLight("white", 1.0);
     camera.add(camera_light);
 
-    loadSTLModel();
+    
 }
 
 function loadSTLModel() {
@@ -56,7 +56,7 @@ function init() {
         // TODO: Ajout de l'interactivité avec la souris
         controls = new ArcballControls(camera, canvas, scene);
         controls.setGizmosVisible(false);
-        animate();
+        
     } catch (e) {
         document.getElementById("canvas-holder").innerHTML="<p><b>Sorry, an error occurred:<br>" +
             e + "</b></p>";
@@ -65,12 +65,12 @@ function init() {
 
     const loader = new THREE.CubeTextureLoader();
     const texture = loader.load([
-        'Fond/posx.jpg', 
-        'Fond/negx.jpg', 
-        'Fond/posy.jpg', 
-        'Fond/negy.jpg', 
-        'Fond/posz.jpg', 
-        'Fond/negz.jpg', 
+        './Fond/posx.jpg', 
+        './Fond/negx.jpg', 
+        './Fond/posy.jpg', 
+        './Fond/negy.jpg', 
+        './Fond/posz.jpg', 
+        './Fond/negz.jpg', 
     ]);
 
     scene.background = texture;
@@ -83,15 +83,17 @@ function init() {
     let fileLoader = new THREE.FileLoader();
     const vertexShaderSource = fileLoader.load("./tp3.vert");
     const fragmentShaderSource = fileLoader.load("./tp3.frag");
-    let material = createMaterial(vertexShaderSource, fragmentShaderSource);
+    //let material = createMaterial(vertexShaderSource, fragmentShaderSource);
 
     // TODO: Importation du modèle 3D
-    
+    loadSTLModel();
+
     // TODO: Ajout de l'interactivité avec la souris
 
     // TODO: Postprocessing
 
     // Animation de la scèene (appelée toutes les 30 ms)
+    animate();
 }
 
 init();
